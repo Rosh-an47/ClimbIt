@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #faf6f0;
+  --color-warm-white: #fffdf8;
+  --color-sand: #efe7da;
+  --color-stone: #e2d9c9;
+  --color-charcoal: #1e1b18;
+  --color-graphite: #4a453f;
+  --color-muted: #8a8278;
+  --color-sky: #7ba8c7;
+  --color-sunrise: #e8a33d;
+  --color-alpenglow: #d6714c;
+  --color-deep-pine: #3d5a4e;
+  --color-warning: #b8453a;
+  --color-risk-green: #4a8a3a;
+  --color-risk-yellow: #c8a83a;
+  --color-risk-orange: #c87a2a;
+  --color-risk-red: #a53a3a;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-cream);
+  color: var(--color-graphite);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-sunrise) 40%, transparent);
+  color: var(--color-charcoal);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.card-lift {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px -24px rgb(30 27 24 / 0.35);
+  border-color: color-mix(in srgb, var(--color-sunrise) 55%, var(--color-stone));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .card-lift,
+  .card-lift:hover {
+    transition: none;
+    transform: none;
+  }
+}
