@@ -26,12 +26,12 @@ export default function ImagePlaceholder({
     let cancelled = false
     const img = new Image()
     img.onload = () => {
-      if (!cancelled) setSrc(`/images/${id}.jpg`)
+      if (!cancelled) setSrc(`/images/${id}.png`)
     }
     img.onerror = () => {
       if (!cancelled) setSrc(null)
     }
-    img.src = `/images/${id}.jpg`
+    img.src = `/images/${id}.png`
     return () => {
       cancelled = true
     }
