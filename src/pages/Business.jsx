@@ -1,104 +1,62 @@
-import { ArrowRight } from 'lucide-react'
-import SectionHeading from '../components/SectionHeading'
-import NextCta from '../components/NextCta'
-import PageTransition from '../components/PageTransition'
-import PersonaCard from '../components/PersonaCard'
-import PorterForces from '../components/PorterForces'
-import { b2b2c, marketSizing, moats } from '../lib/sections'
+import { Sec, H, PageTop, Next, Table } from '../ui'
+
+const quote = 'I do not need more numbers. I need to know who to walk back to.'
 
 export default function Business() {
   return (
-    <PageTransition>
-      <section className="flex min-h-[50vh] items-end bg-gradient-to-b from-[#f3e4c8] to-cream px-6 pb-16 pt-32 md:px-12">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            label="Business"
-            title="A business built for the mountain."
-            subhead="Climbit sells to trekking agencies, not trekkers. Every trek generates data. Every season makes the model sharper."
-          />
-        </div>
-      </section>
+    <>
+      <PageTop title="The agency pays. The guide decides. The trekker wears it." sub="Who we sell to, who we compete with, and why it is hard to copy." />
 
-      <section className="px-6 py-24 md:px-12 md:py-32">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading label="B2B2C" title="Who buys. Who wears. Who wins." />
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
-            {b2b2c.map((col, i) => (
-              <article key={col.title} className="relative rounded-2xl border border-stone bg-warm-white p-8 shadow-sm">
-                <p className="font-mono text-xs uppercase tracking-widest text-sunrise">Layer {i + 1}</p>
-                <h3 className="mt-2 font-display text-2xl text-charcoal">{col.title}</h3>
-                <p className="mt-5 text-sm text-muted">Gives</p>
-                <p className="mt-1 text-base text-graphite">{col.gives}</p>
-                <p className="mt-5 text-sm text-muted">Gets</p>
-                <p className="mt-1 text-base text-graphite">{col.gets}</p>
-                {i < 2 ? (
-                  <ArrowRight className="absolute -right-4 top-1/2 hidden h-6 w-6 -translate-y-1/2 text-sunrise lg:block" aria-hidden />
-                ) : null}
-              </article>
-            ))}
+      <Sec>
+        <H sub="Agencies buy Climbit, guides use it every day, and trekkers wear it. If the guide does not trust it, the agency does not renew.">Who buys: meet Pemba</H>
+        <div className="grid gap-8 lg:grid-cols-[320px_1fr]">
+          <figure>
+            <img src="/images/image-3.jpg" alt="Portrait of Pemba Sherpa, a trek leader" className="w-full rounded-xl object-cover" />
+            <figcaption className="mt-3 font-display text-lg italic text-ink">“{quote}”</figcaption>
+          </figure>
+          <div>
+            <h3 className="text-2xl text-ink">Pemba Sherpa, 38</h3>
+            <p className="mt-1 text-muted">Trek leader and operations manager at a 12-person agency in Darjeeling. Twelve years leading groups on Goecha La and Kedarkantha.</p>
+            <div className="mt-6 grid gap-6 md:grid-cols-3">
+              {[
+                ['What hurts', ['Cannot watch 20 people on a long trail.', 'Check-ins rely on people being honest.', 'One missed case can cost a season’s bookings.']],
+                ['What he wants', ['Everyone walking, sleeping and descending on plan.', 'A shared picture for his junior guides.', 'To win contracts on safety, not only price.']],
+                ['What decides the purchase', ['Works with no signal.', 'Few false alarms. A noisy tool gets ignored.', 'Fits the morning briefing.', 'Pays back within two seasons.']],
+              ].map(([t, items]) => <div key={t}><h4 className="font-semibold text-ink">{t}</h4><ul className="mt-2 space-y-2 text-[15px]">{items.map((i) => <li key={i} className="border-l-2 border-flame pl-3">{i}</li>)}</ul></div>)}
+            </div>
           </div>
         </div>
-      </section>
+      </Sec>
 
-      <section className="bg-sand/50 px-6 py-24 md:px-12 md:py-32">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            label="Persona"
-            title="Pemba holds the season in his hands."
-            subhead="Senior guides are the economic buyer’s operator. If Pemba trusts the hub, the agency renews."
-          />
-          <div className="mt-12">
-            <PersonaCard />
-          </div>
+      <Sec tone="mist">
+        <H sub="Most forces are moderate. One matters more than the rest, and it is not a rival wearable.">Who we compete with</H>
+        <Table
+          head={['Force', 'Level', 'What it means for Climbit']}
+          widths={['24%', '12%', '64%']}
+          rows={[
+            ['Buyer power', 'High', 'Agencies are small and price-sensitive, and many will decide a ₹1,500 finger oximeter and a careful guide are “good enough”.'],
+            ['Substitutes', 'High', 'Better guide training, slower itineraries and handheld oximeters already exist. This is the real rival.'],
+            ['Existing rivals', 'Low', 'Smartwatches and satellite messengers serve individuals. None gives a leader a group view.'],
+            ['Suppliers', 'Medium', 'Sensors are commodity parts from several makers, so no supplier can hold us hostage. Cold-weather battery quality is the one worry.'],
+            ['New entrants', 'Medium', 'Anyone can build a band in months. Winning agency trust and guide-confirmed data takes years.'],
+          ]}
+        />
+        <p className="mt-6 max-w-3xl rounded-xl border-l-4 border-flame bg-white p-5 text-ink">So we do not sell a gadget. We sell the safety record an agency can show customers, we bundle it into the trek price so the agency never pays upfront for a fleet, and we prove the value with pilot data before asking for a contract.</p>
+      </Sec>
+
+      <Sec>
+        <H sub="We have no data on day one, so our defence has to be built in stages.">Why it is hard to copy</H>
+        <div className="grid gap-5 md:grid-cols-3">
+          {[
+            ['Year 1: it becomes routine', 'Climbit sits inside the morning briefing, the guide’s tablet and the agency’s safety file. Guides trained on it do not want to go back.'],
+            ['Year 2: our data gets better than anyone’s', 'Every alert a guide confirms or dismisses is a labelled example from a real Indian route. Rivals can copy the band, not these labels.'],
+            ['Year 3 on: it is tuned to each route', 'Each agency’s history and each route’s season make our alerts more accurate over time, and leaving means starting that again.'],
+          ].map(([t, b]) => <article key={t} className="rounded-xl border border-line bg-white p-6"><h3 className="text-xl text-ink">{t}</h3><p className="mt-3 text-[15px]">{b}</p></article>)}
         </div>
-      </section>
+        <p className="mt-6 max-w-3xl"><span className="font-semibold text-ink">The cold start.</span> To get the first labels, the five pilot agencies get their first season at cost in return for logging what happened after each alert.</p>
+      </Sec>
 
-      <section className="px-6 py-24 md:px-12 md:py-32">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            label="Porter's Five Forces"
-            title="The industry, scored honestly."
-            subhead="Rivalry is low because consumer wearables do not run a group. Entrants are slow because data and trust take seasons, not sprints."
-          />
-          <div className="mt-12">
-            <PorterForces />
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-sand/50 px-6 py-24 md:px-12 md:py-32">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading label="Defensibility" title="Four moats that compound." />
-          <div className="mt-14 grid gap-6 md:grid-cols-2">
-            {moats.map((m) => (
-              <article key={m.title} className="card-lift rounded-2xl border border-stone bg-warm-white p-8 shadow-sm">
-                <h3 className="font-display text-2xl text-charcoal">{m.title}</h3>
-                <p className="mt-4 text-base text-graphite">{m.body}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-6 py-24 md:px-12 md:py-32">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading label="Market sizing" title="TAM, SAM, SOM." />
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {marketSizing.map((m) => (
-              <article key={m.label} className="rounded-2xl border border-stone bg-warm-white p-8 text-center shadow-sm">
-                <p className="font-mono text-xs uppercase tracking-widest text-muted">{m.label}</p>
-                <p className="mt-4 font-mono text-4xl text-charcoal">{m.value}</p>
-                <p className="mt-3 font-display text-lg text-graphite">{m.detail}</p>
-              </article>
-            ))}
-          </div>
-          <p className="mt-10 text-center font-mono text-sm text-deep-pine">
-            $2,000–$4,000 per agency per season — subscription + per-trek rental.
-          </p>
-        </div>
-      </section>
-
-      <NextCta to="/journey" label="Journey & governance" />
-    </PageTransition>
+      <Next to="/journey" label="Follow the journey" line="A moat only counts if the first trek goes well. Here is that trek, and what happens when the AI gets it wrong." />
+    </>
   )
 }

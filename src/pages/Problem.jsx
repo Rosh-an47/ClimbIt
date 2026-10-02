@@ -1,108 +1,67 @@
-import { lazy, Suspense } from 'react'
-import SectionHeading from '../components/SectionHeading'
-import ImagePlaceholder from '../components/ImagePlaceholder'
-import NextCta from '../components/NextCta'
-import PageTransition from '../components/PageTransition'
-import Loader from '../components/Loader'
-import { blacQuadrants, problemStats, whyNow } from '../lib/sections'
-
-const AltitudeMap = lazy(() => import('../components/AltitudeMap'))
+import { Link } from 'react-router-dom'
+import { ArrowRight } from 'lucide-react'
+import { Sec, H, Next, Table } from '../ui'
 
 export default function Problem() {
   return (
-    <PageTransition>
-      <section className="flex min-h-[60vh] items-end bg-gradient-to-b from-[#f3e4c8] to-cream px-6 pb-16 pt-32 md:px-12">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            label="The problem"
-            title="Altitude doesn't announce itself."
-            subhead="Three thousand trekkers a year develop altitude illness on ABC and EBC routes alone. The early signs are subtle, subjective, and easy to miss."
-          />
-        </div>
-      </section>
-
-      <ImagePlaceholder
-        id="image-2"
-        width={1920}
-        height={1080}
-        className="w-full"
-        caption="A guide's job is to lead. Not to guess."
-        alt="A guide looks back at a trekking group spread along a Himalayan trail at dawn"
-      />
-
-      <section className="px-6 py-24 md:px-12 md:py-32">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading label="The numbers" title="What the trail already knows." />
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {problemStats.map((stat) => (
-              <article key={stat.label} className="rounded-2xl border border-stone bg-warm-white p-8 shadow-sm">
-                <p className="font-mono text-3xl text-charcoal md:text-4xl">{stat.value}</p>
-                <p className="mt-3 font-display text-lg text-graphite">{stat.label}</p>
-              </article>
-            ))}
-          </div>
-          <div className="mt-16">
-            <Suspense fallback={<Loader />}>
-              <AltitudeMap />
-            </Suspense>
+    <>
+      <section className="relative flex min-h-[88vh] items-end bg-ink text-white">
+        <img src="/images/image-1.jpg" alt="A tired trekker sits with his head in his hands while a guide helps someone else far behind him" className="absolute inset-0 h-full w-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/10" />
+        <div className="relative mx-auto w-full max-w-6xl px-5 pb-16 pt-32">
+          <h1 className="max-w-3xl text-5xl leading-[1.05] md:text-7xl">Altitude sickness rarely announces itself.</h1>
+          <p className="mt-6 max-w-2xl text-lg text-white/80">Climbit is a wristband and a tablet for the trek leader. It spots who is starting to struggle on a high Himalayan trek, hours before they say a word, and it works with no phone signal.</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href="#day4" className="rounded-full bg-flame px-6 py-3 font-semibold text-white">Read the story</a>
+            <Link to="/solution" className="inline-flex items-center gap-2 rounded-full border border-white/40 px-6 py-3 font-semibold">See the solution <ArrowRight className="h-4 w-4" /></Link>
           </div>
         </div>
       </section>
 
-      <section className="bg-sand/50 px-6 py-24 md:px-12 md:py-32">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading
-            label="B-L-A-C"
-            title="Why this is a white space."
-            subhead="The problem is blatant. The data gap is latent. The desire for safer treks is aspirational. The emergencies are critical. Climbit sits where those four meet."
-          />
-          <div className="relative mt-14 grid gap-6 md:grid-cols-2">
-            {blacQuadrants.map((q) => (
-              <article
-                key={q.key}
-                className={`relative rounded-2xl border bg-warm-white p-8 shadow-sm ${
-                  q.key === 'critical' ? 'border-sunrise' : 'border-stone'
-                }`}
-              >
-                <p className="font-mono text-xs uppercase tracking-widest text-sunrise">{q.title}</p>
-                <p className="mt-4 text-base text-graphite md:text-lg">{q.body}</p>
-                {q.key === 'critical' ? (
-                  <span className="absolute -right-3 -top-3 rounded-full bg-sunrise px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-charcoal shadow-sm">
-                    White space
-                  </span>
-                ) : null}
-              </article>
-            ))}
+      <Sec id="day4">
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+          <div>
+            <h2 className="text-3xl leading-tight text-ink md:text-4xl">Day 4. 4,100 metres. Rohan says he is fine.</h2>
+            <div className="mt-6 space-y-4">
+              <p>Rohan is 31 and works in Pune. He paid ₹15,000 for this trek and has been looking forward to it for a year. Today he is walking slower than yesterday and has a mild headache. He tells nobody, because he does not want to be the person who slows the group down.</p>
+              <p>Pemba, the trek leader, is at the front. Rohan is last, about 300 metres behind. By the time he sits down with nausea and a pounding head, his body has been struggling for hours. The only real cure is to go down, and that is now a long descent in fading light.</p>
+              <p className="font-semibold text-ink">Nobody did anything wrong. Pemba simply cannot see 20 people at once. That is the problem Climbit exists to solve.</p>
+            </div>
           </div>
+          <img src="/images/image-2.jpg" alt="A trekking group spread out along a Himalayan trail with the guide looking back" className="w-full rounded-xl object-cover" />
         </div>
-      </section>
+      </Sec>
 
-      <section className="px-6 py-24 md:px-12 md:py-32">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeading label="Market opportunity" title="Why now." />
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {whyNow.map((col) => (
-              <article key={col.title} className="card-lift rounded-2xl border border-stone bg-warm-white p-8 shadow-sm">
-                <h3 className="font-display text-2xl text-charcoal">{col.title}</h3>
-                <p className="mt-4 text-base text-graphite">{col.body}</p>
-              </article>
-            ))}
-          </div>
+      <Sec tone="mist">
+        <H sub="Altitude illness is well known. The gap is not knowledge. It is visibility, and nobody can see early enough with what they have today.">Why nobody catches it in time</H>
+        <Table
+          head={['What exists today', 'What it does', 'Why it is not enough']}
+          rows={[
+            ['The guide’s eyes', 'Watches faces, walking and conversation.', 'Works for the few people nearby. Groups spread over hundreds of metres, and trekkers hide symptoms.'],
+            ['Evening finger oximeter', 'Checks blood oxygen once a day at camp.', 'One number, once a day. Cold fingers give bad readings, and it says nothing about the afternoon that mattered.'],
+            ['Smartwatches and satellite messengers', 'Track your own health, or send an SOS.', 'Built for one person. They need the wearer to act, and they do not show a leader the whole group.'],
+          ]}
+        />
+        <p className="mt-4 text-sm text-muted">Group size and trekker behaviour are our working assumptions from how commercial trek groups run. Our pilot will measure them.</p>
+      </Sec>
+
+      <Sec>
+        <H sub="Climbit is a fictitious company. This is the opportunity it is built around.">Why now, and where we start</H>
+        <div className="grid gap-5 md:grid-cols-3">
+          {[
+            ['Wearables are cheap and small', 'Sensors for heart rate and blood oxygen now fit on a wrist band at a price a trek agency can afford.'],
+            ['The AI can run on the device', 'The model runs on the band and the leader’s tablet, so it works on a trail with no signal.'],
+            ['Agencies carry the cost of a bad day', 'An emergency descent or a death damages a trek company’s name for years. Safety is now something they can sell.'],
+          ].map(([t, b]) => <article key={t} className="rounded-xl border border-line bg-white p-6"><h3 className="text-xl text-ink">{t}</h3><p className="mt-3 text-[15px]">{b}</p></article>)}
         </div>
-      </section>
+        <div className="mt-8 grid gap-5 rounded-xl bg-ink p-7 text-white md:grid-cols-3">
+          <div><p className="text-sm text-white/60">Mission</p><p className="mt-1 font-display text-xl">Give every trek leader early warning on every trekker.</p></div>
+          <div><p className="text-sm text-white/60">Vision</p><p className="mt-1 font-display text-xl">No preventable altitude emergency on an Indian trek.</p></div>
+          <div><p className="text-sm text-white/60">First market</p><p className="mt-1 text-[15px]">Commercial trek agencies in the Indian Himalaya: Uttarakhand, Himachal, Sikkim and Ladakh. Five pilot agencies first, then 50 within three years (our targets).</p></div>
+        </div>
+      </Sec>
 
-      <section className="px-6 pb-24 md:px-12 md:pb-32">
-        <blockquote className="mx-auto max-w-4xl text-center">
-          <p className="font-display text-4xl leading-tight text-charcoal md:text-5xl">
-            “A problem well stated is a problem half-solved.”
-          </p>
-          <footer className="mt-6 font-mono text-xs uppercase tracking-widest text-muted">
-            Charles Kettering · We spent 55 minutes on the problem, 5 on the solution.
-          </footer>
-        </blockquote>
-      </section>
-
-      <NextCta to="/how-it-works" label="How it works" />
-    </PageTransition>
+      <Next to="/solution" label="See the solution" line="So what should a better system do? Notice the drift early, check it, and tell the leader. The leader decides." />
+    </>
   )
 }
