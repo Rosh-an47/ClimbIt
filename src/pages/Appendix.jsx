@@ -47,7 +47,7 @@ export default function Appendix() {
                 ['A. Guide controls everything', 'Safest, but slow. The AI is just a display.', false],
                 ['B. AI checks, guide decides', 'Fast response, and responsibility stays with a person who can see the trekker.', true],
                 ['C. AI acts alone', 'Fastest, but it would give orders on a mountain with no signal and no accountability.', false],
-              ].map(([t, b, on]) => <div key={t} className={`rounded-xl border p-4 ${on ? 'border-flame bg-white ring-2 ring-flame' : 'border-line bg-white'}`}><p className="font-semibold text-ink">{t}{on && ' (chosen)'}</p><p className="text-[15px]">{b}</p></div>)}
+              ].map(([t, b, on]) => <div key={t} className={`lift-card rounded-xl border p-4 ${on ? 'border-flame bg-white ring-2 ring-flame' : 'border-line bg-white'}`}><p className="font-semibold text-ink">{t}{on && ' (chosen)'}</p><p className="text-[15px]">{b}</p></div>)}
             </div>
             <p>I chose B because the real risk is a confident wrong answer. That choice led to the emergency note, to “never says safe”, and to the guide-override log.</p>
             <h2 className="text-2xl text-ink">What I did with the AI’s ideas</h2>

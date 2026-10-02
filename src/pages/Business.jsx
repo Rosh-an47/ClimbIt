@@ -51,7 +51,7 @@ export default function Business() {
             ['Year 1: it becomes routine', 'Climbit sits inside the morning briefing, the guide’s tablet and the agency’s safety file. Guides trained on it do not want to go back.'],
             ['Year 2: our data gets better than anyone’s', 'Every alert a guide confirms or dismisses is a labelled example from a real Indian route. Rivals can copy the band, not these labels.'],
             ['Year 3 on: it is tuned to each route', 'Each agency’s history and each route’s season make our alerts more accurate over time, and leaving means starting that again.'],
-          ].map(([t, b]) => <article key={t} className="rounded-xl border border-line bg-white p-6"><h3 className="text-xl text-ink">{t}</h3><p className="mt-3 text-[15px]">{b}</p></article>)}
+          ].map(([t, b]) => <article key={t} className="lift-card rounded-xl border border-line bg-white p-6"><h3 className="text-xl text-ink">{t}</h3><p className="mt-3 text-[15px]">{b}</p></article>)}
         </div>
         <p className="mt-6 max-w-3xl"><span className="font-semibold text-ink">The cold start.</span> To get the first labels, the five pilot agencies get their first season at cost in return for logging what happened after each alert.</p>
       </Sec>

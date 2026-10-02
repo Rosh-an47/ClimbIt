@@ -17,7 +17,7 @@ export function Layout() {
   const link = ({ isActive }) => `rounded-full px-4 py-2 text-sm font-medium transition ${isActive ? 'bg-flame text-white' : 'text-white/75 hover:text-white'}`
   return (
     <div className="min-h-screen overflow-x-hidden">
-      <header className="fixed inset-x-0 top-0 z-50 bg-ink/95 backdrop-blur">
+      <header className="site-header fixed inset-x-0 top-0 z-50 bg-ink/90 backdrop-blur-xl">
         <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3" aria-label="Primary">
           <Link to="/" aria-label="Climbit home"><img src="/images/logo.png" alt="Climbit" className="h-9 w-auto" /></Link>
           <div className="hidden gap-1 md:flex">{routes.map((r) => <NavLink key={r.to} to={r.to} end={r.to === '/'} className={link}>{r.label}</NavLink>)}</div>
@@ -38,7 +38,7 @@ export function Layout() {
 
 const tones = { snow: 'bg-snow text-body', mist: 'bg-mist text-body', ink: 'bg-ink text-white/85' }
 export function Sec({ tone = 'snow', children, id }) {
-  return <section id={id} className={`${tones[tone]} px-5 py-16 md:py-20`}><div className="mx-auto max-w-6xl">{children}</div></section>
+  return <section id={id} className={`${tones[tone]} ${tone === 'mist' ? 'soft-grid' : ''} px-5 py-16 md:py-20`}><div className="mx-auto max-w-6xl">{children}</div></section>
 }
 export function H({ children, sub, dark }) {
   return (
@@ -50,17 +50,17 @@ export function H({ children, sub, dark }) {
 }
 export function PageTop({ title, sub }) {
   return (
-    <section className="bg-ink px-5 pb-14 pt-32 text-white">
+    <section className="page-top relative bg-ink px-5 pb-14 pt-32 text-white">
       <div className="mx-auto max-w-6xl">
-        <h1 className="max-w-3xl text-4xl leading-[1.1] md:text-6xl">{title}</h1>
-        <p className="mt-5 max-w-2xl text-lg text-white/70">{sub}</p>
+        <h1 className="reveal max-w-3xl text-4xl leading-[1.1] md:text-6xl">{title}</h1>
+        <p className="reveal mt-5 max-w-2xl text-lg text-white/70 [animation-delay:120ms]">{sub}</p>
       </div>
     </section>
   )
 }
 export function Table({ head, rows, widths = [] }) {
   return (
-    <div className="overflow-x-auto rounded-xl border border-line bg-white">
+    <div className="table-shell overflow-x-auto rounded-2xl border border-line bg-white">
       <table className="w-full min-w-[640px] text-left text-[15px]">
         <thead className="bg-mist text-ink"><tr>{head.map((h, i) => <th key={h} className="px-4 py-3 font-semibold" style={{ width: widths[i] }}>{h}</th>)}</tr></thead>
         <tbody>{rows.map((r, i) => <tr key={i} className="border-t border-line align-top">{r.map((c, j) => <td key={j} className={`px-4 py-3 ${j === 0 ? 'font-semibold text-ink' : ''}`}>{c}</td>)}</tr>)}</tbody>
@@ -70,7 +70,7 @@ export function Table({ head, rows, widths = [] }) {
 }
 export function Next({ to, label, line }) {
   return (
-    <section className="bg-slate px-5 py-14 text-white">
+    <section className="relative overflow-hidden bg-slate px-5 py-14 text-white before:absolute before:-right-16 before:-top-24 before:h-64 before:w-64 before:rounded-full before:border before:border-white/10">
       <div className="mx-auto flex max-w-6xl flex-col gap-5 md:flex-row md:items-center md:justify-between">
         <p className="max-w-2xl font-display text-2xl leading-snug md:text-3xl">{line}</p>
         <Link to={to} className="inline-flex shrink-0 items-center gap-2 self-start rounded-full bg-flame px-6 py-3 font-semibold text-white transition hover:bg-[#e64424]">{label} <ArrowRight className="h-4 w-4" /></Link>

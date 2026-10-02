@@ -18,4 +18,16 @@ body { margin: 0; background: #F6F8F9; color: #34454F; font-family: "Inter", sys
 h1, h2, h3 { font-family: "Fraunces", Georgia, serif; font-weight: 600; letter-spacing: -0.01em; }
 ::selection { background: #FC522F; color: #fff; }
 :focus-visible { outline: 3px solid #FC522F; outline-offset: 2px; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+.site-header { box-shadow: 0 8px 30px rgba(5, 19, 31, .18); }
+.hero-shell, .page-top { isolation: isolate; overflow: hidden; }
+.hero-shell::before, .page-top::before { content: ""; position: absolute; z-index: -1; width: 32rem; height: 32rem; right: -10rem; top: 5rem; border: 1px solid rgba(255,255,255,.15); border-radius: 50%; box-shadow: 0 0 0 3rem rgba(252,82,47,.04), 0 0 0 7rem rgba(255,255,255,.025); animation: drift 16s ease-in-out infinite; }
+.hero-shell::after, .page-top::after { content: ""; position: absolute; z-index: -1; width: 8rem; height: 8rem; right: 16%; top: 24%; background: linear-gradient(135deg, rgba(252,82,47,.9), rgba(252,82,47,.15)); clip-path: polygon(50% 0, 100% 100%, 0 100%); filter: blur(.2px); opacity: .65; transform: rotate(18deg); animation: float 7s ease-in-out infinite; }
+.reveal { animation: reveal .8s both; }
+.lift-card { transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease; }
+.lift-card:hover { transform: translateY(-7px); border-color: rgba(252,82,47,.55); box-shadow: 0 18px 35px rgba(15,34,51,.12); }
+.soft-grid { background-image: linear-gradient(rgba(15,34,51,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(15,34,51,.055) 1px, transparent 1px); background-size: 28px 28px; }
+.table-shell { box-shadow: 0 12px 28px rgba(15,34,51,.06); }
+@keyframes drift { 0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); } 50% { transform: translate3d(-18px, 14px, 0) rotate(8deg); } }
+@keyframes float { 0%, 100% { transform: translateY(0) rotate(18deg); } 50% { transform: translateY(-18px) rotate(28deg); } }
+@keyframes reveal { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }

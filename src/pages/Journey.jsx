@@ -55,7 +55,7 @@ export default function Journey() {
             ['No made-up text', 'In the field the AI does not write free text. Alerts use fixed sentences filled with real readings, so it cannot invent a symptom.'],
             ['Checked every month', 'We compare alerts against what guides found, and publish the misses and false alarms to agencies.'],
             ['Fair for everyone', 'Wrist sensors can read differently across skin tones, ages and cold hands. We test for this each quarter, and an outside expert audits us once a year.'],
-          ].map(([t, b]) => <article key={t} className="rounded-xl border border-line bg-white p-6"><h3 className="text-lg text-ink">{t}</h3><p className="mt-2 text-[15px]">{b}</p></article>)}
+          ].map(([t, b]) => <article key={t} className="lift-card rounded-xl border border-line bg-white p-6"><h3 className="text-lg text-ink">{t}</h3><p className="mt-2 text-[15px]">{b}</p></article>)}
         </div>
         <div className="mt-6 rounded-xl bg-white p-5">
           <p className="mb-3 font-semibold text-ink">Four states, and the guide is in charge of every one</p>

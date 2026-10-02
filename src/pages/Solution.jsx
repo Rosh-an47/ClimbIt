@@ -12,7 +12,7 @@ export default function Solution() {
             ['1. It learns Rohan’s normal', 'For two or three days before the trek, the band records his resting heart rate, sleep and blood oxygen at home. That becomes his own baseline.'],
             ['2. It compares him to others', 'On the trail it checks Rohan against his own normal, against the rest of today’s group, and against people of similar age and fitness at the same height.'],
             ['3. It spots the drift', 'At 11:40 his resting heart rate is 21 beats above his own normal. The other 19 trekkers are steady. So it is Rohan, not the weather.'],
-          ].map(([t, b]) => <article key={t} className="rounded-xl border border-line bg-white p-6"><h3 className="text-xl text-ink">{t}</h3><p className="mt-3 text-[15px]">{b}</p></article>)}
+          ].map(([t, b]) => <article key={t} className="lift-card rounded-xl border border-line bg-white p-6"><h3 className="text-xl text-ink">{t}</h3><p className="mt-3 text-[15px]">{b}</p></article>)}
         </div>
         <p className="mt-6 max-w-3xl">The same blood oxygen reading can be normal while sprinting up a slope and worrying while sitting still, so the AI always reads the number alongside what the person is doing and how high they are.</p>
       </Sec>
@@ -40,7 +40,7 @@ export default function Solution() {
             ['The guide', 'Looks at the one or two people flagged instead of scanning everyone, and has a record to show for each decision.'],
             ['The agency', 'Fewer emergency descents, a safety record it can advertise, and a clear paper trail if something goes wrong.'],
             ['The trekker', 'Someone is watching out for them even when they are quiet or at the back. It adds about ₹1,000 to a ₹12,000 to ₹20,000 trek.'],
-          ].map(([t, b]) => <article key={t} className="rounded-xl border border-line bg-white p-6"><h3 className="text-xl text-ink">{t}</h3><p className="mt-3 text-[15px]">{b}</p></article>)}
+          ].map(([t, b]) => <article key={t} className="lift-card rounded-xl border border-line bg-white p-6"><h3 className="text-xl text-ink">{t}</h3><p className="mt-3 text-[15px]">{b}</p></article>)}
         </div>
         <div className="mt-8 grid gap-5 rounded-xl bg-ink p-7 text-white md:grid-cols-3">
           <div><p className="font-display text-3xl text-flame">₹1,000</p><p className="mt-1 text-sm text-white/70">per trekker per trek, for the band and the tablet</p></div>

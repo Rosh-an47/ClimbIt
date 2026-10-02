@@ -5,12 +5,13 @@ import { Sec, H, Next, Table } from '../ui'
 export default function Problem() {
   return (
     <>
-      <section className="relative flex min-h-[88vh] items-end bg-ink text-white">
+      <section className="hero-shell relative flex min-h-[88vh] items-end bg-ink text-white">
         <img src="/images/image-1.jpg" alt="A tired trekker sits with his head in his hands while a guide helps someone else far behind him" className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/10" />
         <div className="relative mx-auto w-full max-w-6xl px-5 pb-16 pt-32">
-          <h1 className="max-w-3xl text-5xl leading-[1.05] md:text-7xl">Altitude sickness rarely announces itself.</h1>
-          <p className="mt-6 max-w-2xl text-lg text-white/80">Climbit is a wristband and a tablet for the trek leader. It spots who is starting to struggle on a high Himalayan trek, hours before they say a word, and it works with no phone signal.</p>
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[.2em] text-white/75 backdrop-blur"><span className="h-2 w-2 animate-pulse rounded-full bg-flame" /> Group safety, rethought</div>
+          <h1 className="reveal max-w-3xl text-5xl leading-[1.05] md:text-7xl">Altitude sickness rarely announces itself.</h1>
+          <p className="reveal mt-6 max-w-2xl text-lg text-white/80 [animation-delay:120ms]">Climbit is a wristband and a tablet for the trek leader. It spots who is starting to struggle on a high Himalayan trek, hours before they say a word, and it works with no phone signal.</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#day4" className="rounded-full bg-flame px-6 py-3 font-semibold text-white">Read the story</a>
             <Link to="/solution" className="inline-flex items-center gap-2 rounded-full border border-white/40 px-6 py-3 font-semibold">See the solution <ArrowRight className="h-4 w-4" /></Link>
@@ -52,7 +53,7 @@ export default function Problem() {
             ['Wearables are cheap and small', 'Sensors for heart rate and blood oxygen now fit on a wrist band at a price a trek agency can afford.'],
             ['The AI can run on the device', 'The model runs on the band and the leader’s tablet, so it works on a trail with no signal.'],
             ['Agencies carry the cost of a bad day', 'An emergency descent or a death damages a trek company’s name for years. Safety is now something they can sell.'],
-          ].map(([t, b]) => <article key={t} className="rounded-xl border border-line bg-white p-6"><h3 className="text-xl text-ink">{t}</h3><p className="mt-3 text-[15px]">{b}</p></article>)}
+          ].map(([t, b]) => <article key={t} className="lift-card rounded-xl border border-line bg-white p-6"><h3 className="text-xl text-ink">{t}</h3><p className="mt-3 text-[15px]">{b}</p></article>)}
         </div>
         <div className="mt-8 grid gap-5 rounded-xl bg-ink p-7 text-white md:grid-cols-3">
           <div><p className="text-sm text-white/60">Mission</p><p className="mt-1 font-display text-xl">Give every trek leader early warning on every trekker.</p></div>
