@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { Mountain } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { routes } from '../lib/design'
 
 export default function Navbar() {
@@ -8,87 +8,54 @@ export default function Navbar() {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
+    const onScroll = () => setScrolled(window.scrollY > 18)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled ? 'border-b border-stone/80 bg-cream/85 backdrop-blur-md' : 'bg-transparent'
-      }`}
-    >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-12" aria-label="Primary">
-        <Link to="/" className="flex items-center gap-2 text-charcoal" onClick={() => setOpen(false)}>
-          <Mountain className="h-6 w-6 text-deep-pine" aria-hidden />
-          <span className="font-display text-xl tracking-tight">Climbit</span>
+    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled ? 'bg-[#0e211d]/94 shadow-[0_14px_50px_-30px_rgba(0,0,0,.65)] backdrop-blur-xl' : 'bg-[#0e211d]/82 backdrop-blur-md'}`}>
+      <nav className="mx-auto flex max-w-[1500px] items-center justify-between px-5 py-3.5 md:px-8 lg:px-10" aria-label="Primary">
+        <Link to="/" className="group flex items-center" onClick={() => setOpen(false)} aria-label="Climbit home">
+          <img src="/images/logo.png" alt="Climbit" className="h-9 w-auto max-w-[190px] object-contain object-left" />
         </Link>
 
-        <button
-          type="button"
-          className="rounded-md p-2 text-charcoal md:hidden"
-          aria-expanded={open}
-          aria-label="Toggle menu"
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span className="sr-only">Menu</span>
-          <div className="flex h-4 w-5 flex-col justify-between">
-            <span className="block h-px bg-charcoal" />
-            <span className="block h-px bg-charcoal" />
-            <span className="block h-px bg-charcoal" />
-          </div>
-        </button>
-
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-1 rounded-full border border-white/10 bg-white/[.045] p-1 md:flex">
           {routes.map((item) => (
             <NavLink
               key={item.path}
               to={item.path}
-              className={({ isActive }) =>
-                `text-sm text-graphite transition hover:text-charcoal ${
-                  isActive ? 'border-b-2 border-sunrise pb-0.5 text-charcoal' : ''
-                }`
-              }
+              end={item.path === '/'}
+              className={({ isActive }) => `rounded-full px-4 py-2 text-[12px] font-medium transition-all ${isActive ? 'bg-[#C6A15B] text-[#10241f] shadow-sm' : 'text-white/65 hover:bg-white/[.07] hover:text-white'}`}
             >
               {item.label}
             </NavLink>
           ))}
-          <Link
-            to="/contact"
-            className="rounded-full bg-sunrise px-4 py-2 text-sm font-medium text-charcoal shadow-sm transition hover:-translate-y-0.5 hover:bg-alpenglow hover:text-warm-white"
-          >
-            Request a Demo
-          </Link>
         </div>
+
+        <button type="button" className="rounded-full border border-white/10 bg-white/[.05] p-2 text-white md:hidden" aria-expanded={open} aria-label="Toggle menu" onClick={() => setOpen((v) => !v)}>
+          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
       </nav>
 
-      {open ? (
-        <div className="border-t border-stone bg-cream px-6 py-4 md:hidden">
-          <div className="flex flex-col gap-3">
+      {open && (
+        <div className="border-t border-white/10 bg-[#0e211d] px-5 py-4 md:hidden">
+          <div className="flex flex-col gap-1">
             {routes.map((item) => (
               <NavLink
                 key={item.path}
                 to={item.path}
+                end={item.path === '/'}
                 onClick={() => setOpen(false)}
-                className={({ isActive }) =>
-                  `py-2 text-base ${isActive ? 'text-sunrise' : 'text-charcoal'}`
-                }
+                className={({ isActive }) => `rounded-xl px-4 py-3 text-sm ${isActive ? 'bg-[#C6A15B] text-[#10241f]' : 'text-white/75'}`}
               >
                 {item.label}
               </NavLink>
             ))}
-            <Link
-              to="/contact"
-              onClick={() => setOpen(false)}
-              className="mt-2 rounded-full bg-sunrise px-4 py-3 text-center text-sm font-medium text-charcoal"
-            >
-              Request a Demo
-            </Link>
           </div>
         </div>
-      ) : null}
+      )}
     </header>
   )
 }

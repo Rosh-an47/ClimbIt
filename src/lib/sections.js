@@ -261,49 +261,34 @@ export const marketSizing = [
 
 export const journeyStages = [
   {
-    title: 'Booking',
-    body: 'Climbit is bundled in the agency package. Safety is sold with the itinerary, not added as an afterthought.',
-    data: 'Package SKU: Climbit fleet × group size, consent captured at checkout.',
+    title: 'Booking + baseline',
+    body: 'Climbit enters the agency package before the trek. Consent is captured and the band starts building a personal baseline before altitude becomes part of the story.',
+    data: 'Package SKU + consent at checkout · 48–72h resting HR, HRV and overnight SpO₂ baseline.',
   },
   {
-    title: 'Pre-trek',
-    body: 'The trekker wears the band for a personal baseline at home or in Kathmandu before the trail steepens.',
-    data: 'Baseline window: 48–72h resting HR, HRV, overnight SpO₂.',
-  },
-  {
-    title: 'Day 1',
-    body: 'The trek begins. The Guide Hub comes online and the group appears as a living map of risk, not a roll call.',
-    data: 'Hub pairs 30 bands. All inference local. Zero cloud required.',
+    title: 'Trail activation',
+    body: 'On Day 1 the Guide Hub pairs the group and turns thirty separate wearables into one local field view. No cloud round-trip is required.',
+    data: 'Up to 30 bands paired locally · inference stays on the hub/device · route context begins at ascent.',
   },
   {
     title: 'Continuous monitoring',
-    body: 'Edge AI runs on the wrist. Scores update with activity, altitude, and signal quality — silently, unless they should not.',
-    data: 'Risk score refresh: every 60s; alert path only on multi-signal agreement.',
+    body: 'The system watches physiology in context — altitude, activity, signal quality and each trekker’s own baseline — without filling the guide’s screen with noise.',
+    data: 'Risk context refreshes every 60s · alerts require multi-signal agreement rather than a single threshold.',
   },
   {
-    title: 'Risk signal',
-    body: 'YELLOW. The guide is asked to check in. The trekker is not panicked. The system is curious, not theatrical.',
-    data: 'Example: personal HR drift + peer divergence at 4,100 m, activity = rest.',
-  },
-  {
-    title: 'Guide assessment',
-    body: 'Human verification, always. The guide talks, watches gait, and confirms or dismisses. The model waits.',
-    data: 'Guide action logged: confirmed / monitoring / dismissed with reason.',
+    title: 'Signal + assessment',
+    body: 'A divergence surfaces as a quiet prompt. The guide checks in, watches gait and conversation, and confirms, dismisses or keeps monitoring. The model waits.',
+    data: 'Example: HR drift + peer divergence at 4,100 m while resting · guide action logged with reason.',
   },
   {
     title: 'Escalation',
-    body: 'ORANGE or RED: stop ascent or open emergency protocol. Agency sees the packet. The mountain has a plan.',
-    data: 'Packet: GPS, altitude, last 6h vitals, symptoms, protocol recommended.',
+    body: 'When the operational state turns orange or red, the system packages the relevant context so the guide and agency can execute the protocol they already own.',
+    data: 'GPS + altitude + recent vitals + symptoms + recommended protocol · guide verifies and decides.',
   },
   {
-    title: 'Post-trek',
-    body: 'Anonymised data feeds model improvement. Live inference never trained on the trail. Updates happen offline, validated.',
-    data: 'Seasonal model validation against labelled events before any OTA.',
-  },
-  {
-    title: 'Renewal',
-    body: 'The agency renews for next season. Switching would mean giving up a year of calibrated baselines and insurance language.',
-    data: 'Contract: $2,000–$4,000 / agency / season + per-trek rental.',
+    title: 'Post-trek + renewal',
+    body: 'The loop closes after the trek. Validated, anonymised data can improve the system, while the agency carries calibrated baselines and operational history into the next season.',
+    data: 'Seasonal validation before model updates · renewal combines fleet continuity, calibrated history and agency workflow.',
   },
 ]
 
@@ -380,8 +365,3 @@ export const dpdp = [
   },
 ]
 
-export const contactNext = [
-  { title: 'We’ll respond in 24h', body: 'A human from Climbit, not a ticket bot, with a time that works for your operations lead.' },
-  { title: 'Demo setup call', body: 'Guide Hub, risk states, and a walkthrough of a yellow-to-orange day on ABC or EBC.' },
-  { title: 'Pilot deployment planning', body: 'Fleet size, consent language, insurance notes, and a first-season success metric.' },
-]
