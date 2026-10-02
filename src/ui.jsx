@@ -78,3 +78,37 @@ export function Next({ to, label, line }) {
     </section>
   )
 }
+
+export function SignalOrbit() {
+  return (
+    <div className="perspective relative mx-auto h-72 w-full max-w-sm" aria-label="Climbit signal orbit visual">
+      <div className="command-lens orbital-card absolute inset-4 rounded-[2rem] border border-white/15 p-6 backdrop-blur-xl">
+        <div className="flex items-end justify-between"><div><span className="block text-[10px] uppercase tracking-[.2em] text-white/50">Day 4</span><strong className="font-display text-2xl">11:40 am</strong></div><span className="text-right text-xs text-white/55">4,100 m<br /><span className="text-white/35">trail reading</span></span></div>
+        <div className="relative mt-3 flex h-40 items-center justify-center">
+          <div className="lens-orbit absolute h-36 w-36 rounded-full border border-flame/35 border-dashed" />
+          <div className="lens-orbit-reverse absolute h-24 w-24 rounded-full border border-white/20" />
+          <div className="lens-sweep absolute bottom-1/2 left-1/2 h-16 w-px origin-bottom bg-gradient-to-t from-flame to-transparent" />
+          <div className="signal-dot z-10 flex h-16 w-16 items-center justify-center rounded-full bg-flame text-center text-xs font-semibold text-white">Rohan<br /><span className="text-[11px]">+21 bpm</span></div>
+          <span className="absolute left-5 top-8 h-2 w-2 rounded-full bg-emerald-300" /><span className="absolute right-9 top-14 h-2 w-2 rounded-full bg-emerald-300" /><span className="absolute bottom-7 left-16 h-2 w-2 rounded-full bg-amber-300" /><span className="absolute bottom-4 right-14 h-2 w-2 rounded-full bg-emerald-300" />
+        </div>
+        <div className="flex items-center justify-between border-t border-white/10 pt-3 text-xs"><span className="text-white/50">19 steady</span><span className="font-semibold text-flame">CHECK IN</span></div>
+      </div>
+    </div>
+  )
+}
+
+export function StateWheel({ states, selected, onSelect }) {
+  return (
+    <div className="perspective flex flex-col items-center gap-6 md:flex-row md:justify-between">
+      <div className="journey-wheel relative h-56 w-56 shrink-0 rounded-full p-5 shadow-2xl state-meter">
+        <div className="flex h-full w-full items-center justify-center rounded-full bg-ink text-center text-white shadow-inner">
+          <div><span className="block text-xs uppercase tracking-[.2em] text-white/55">Guide</span><strong className="mt-1 block font-display text-2xl">{states[selected][0]}</strong><span className="mt-1 block text-xs text-white/60">decision point</span></div>
+        </div>
+        <span className="absolute left-1/2 top-0 h-3 w-3 -translate-x-1/2 rounded-full bg-white shadow-lg" />
+      </div>
+      <div className="grid w-full gap-2 sm:grid-cols-2">
+        {states.map(([name, color, description], i) => <button key={name} onClick={() => onSelect(i)} className={`rounded-xl border p-3 text-left transition hover:-translate-y-0.5 ${i === selected ? 'border-ink bg-ink text-white shadow-lg' : 'border-line bg-white text-ink'}`}><span className="flex items-center gap-2 font-semibold"><span className="h-3 w-3 rounded-full" style={{ background: color }} />{name}</span><span className={`mt-1 block text-xs ${i === selected ? 'text-white/65' : 'text-muted'}`}>{description}</span></button>)}
+      </div>
+    </div>
+  )
+}

@@ -1,15 +1,22 @@
-import { Sec, H, PageTop, Next, Table } from '../ui'
+import { Sec, H, PageTop, Next, Table, SignalOrbit } from '../ui'
 
 export default function Solution() {
   return (
     <>
       <PageTop title="Climbit watches the drift, so the guide does not have to watch everyone." sub="Back on Day 4. Here is what Climbit does at 11:40 am, before Rohan says a word." />
 
+      <section className="bg-ink px-5 py-12 text-white">
+        <div className="mx-auto grid max-w-6xl items-center gap-8 md:grid-cols-[1fr_360px]">
+          <div><p className="text-sm font-semibold uppercase tracking-[.2em] text-flame">The moment it matters</p><h2 className="mt-3 max-w-xl font-display text-3xl leading-tight md:text-4xl">One quiet screen. One person worth walking back to.</h2><p className="mt-4 max-w-xl text-white/65">The group stays in the background while the useful signal comes forward.</p></div>
+          <SignalOrbit />
+        </div>
+      </section>
+
       <Sec>
         <H sub="The AI does one job: it learns what is normal for each person and tells the leader when someone moves away from it.">What the AI actually does</H>
         <div className="grid gap-5 md:grid-cols-3">
           {[
-            ['1. It learns Rohan’s normal', 'For two or three days before the trek, the band records his resting heart rate, sleep and blood oxygen at home. That becomes his own baseline.'],
+            ['1. It learns Rohan’s normal', 'At base camp before the trek begins, Rohan wears the band for a short resting check of his heart rate and blood oxygen. That becomes his starting baseline.'],
             ['2. It compares him to others', 'On the trail it checks Rohan against his own normal, against the rest of today’s group, and against people of similar age and fitness at the same height.'],
             ['3. It spots the drift', 'At 11:40 his resting heart rate is 21 beats above his own normal. The other 19 trekkers are steady. So it is Rohan, not the weather.'],
           ].map(([t, b]) => <article key={t} className="lift-card rounded-xl border border-line bg-white p-6"><h3 className="text-xl text-ink">{t}</h3><p className="mt-3 text-[15px]">{b}</p></article>)}

@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { Sec, H, PageTop, Next, Table } from '../ui'
+import { Sec, H, PageTop, Next, Table, StateWheel } from '../ui'
 
 const stages = [
-  ['Booking and baseline', 'Rohan books through the agency. He reads a short notice in English or Hindi, agrees to safety monitoring, and wears the band at home for two or three days so it learns his normal.', 'The agency sells a safer trek. Rohan feels looked after before he has left.'],
+  ['Booking and baseline', 'Rohan books through the agency. He reads a short notice in English or Hindi, agrees to safety monitoring, and completes a short resting check at base camp before the trek begins so the band can establish his starting baseline.', 'The agency sells a safer trek. Rohan feels looked after before he has left.'],
   ['Day 1 on the trail', 'Pemba pairs all the bands to his tablet in a few minutes. Everything runs on the band and the tablet, so there is no need for signal.', 'The leader gets one screen instead of 20 separate guesses.'],
   ['Days 2 to 4 walking', 'The screen stays quiet while everyone is steady. It only speaks when someone drifts from their own normal and the rest of the group is not drifting with them.', 'No noise, so Pemba keeps trusting it.'],
   ['Day 4, 11:40 am', 'Rohan’s band asks him to rest and recheck. His reading holds, so Pemba’s tablet shows a quiet alert. Pemba walks back, agrees Rohan is struggling, and takes him down to a lower camp.', 'Rohan descends at noon in daylight and not at dusk, and the group stays together.'],
@@ -59,8 +59,7 @@ export default function Journey() {
         </div>
         <div className="mt-6 rounded-xl bg-white p-5">
           <p className="mb-3 font-semibold text-ink">Four states, and the guide is in charge of every one</p>
-          <div className="flex flex-wrap gap-2">{states.map(([n, c], i) => <button key={n} onClick={() => setR(i)} className={`flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition ${i === r ? 'border-ink bg-ink text-white' : 'border-line text-ink'}`}><span className="h-3 w-3 rounded-full" style={{ background: c }} />{n}</button>)}</div>
-          <p className="mt-3">{states[r][2]}</p>
+          <StateWheel states={states} selected={r} onSelect={setR} />
         </div>
       </Sec>
 
@@ -71,7 +70,7 @@ export default function Journey() {
           widths={['32%', '68%']}
           rows={[
             ['Clear notice and consent for one purpose', 'A short English and Hindi notice at booking, covering safety monitoring only. Consent can be withdrawn in the app. We will use a registered Consent Manager once they are live.'],
-            ['Take only what is needed', 'Heart rate, blood oxygen, sleep baseline, symptom taps, location and height. No contacts, photos or messages.'],
+            ['Take only what is needed', 'Heart rate, resting baseline, blood oxygen, symptom taps, location and height. No contacts, photos or messages.'],
             ['Medical emergencies', 'The Act allows data use without fresh consent to protect a life. Only a red alert uses this, shares the minimum with rescuers, and is logged.'],
             ['Children', 'Under-18s need a parent’s verifiable consent and cannot be tracked or monitored, apart from narrow exemptions. Version 1 is for adults only. School groups wait for legal advice.'],
             ['Security and breaches', 'Data is encrypted on the band, tablet and server. If there is a breach, we tell the Data Protection Board and each affected person, including the 72-hour report to the Board.'],
