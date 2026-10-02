@@ -1,52 +1,89 @@
 import { useState } from 'react'
-import { ArrowRight, CheckCircle2, ChevronRight, ShieldCheck } from 'lucide-react'
-import SectionHeading from '../components/SectionHeading'
-import NextCta from '../components/NextCta'
-import PageTransition from '../components/PageTransition'
-import JourneyTimeline from '../components/JourneyTimeline'
-import GovernanceGrid from '../components/GovernanceGrid'
-import { dpdp, riskStates } from '../lib/sections'
+import { Sec, H, PageTop, Next, Table } from '../ui'
+
+const stages = [
+  ['Booking and baseline', 'Rohan books through the agency. He reads a short notice in English or Hindi, agrees to safety monitoring, and wears the band at home for two or three days so it learns his normal.', 'The agency sells a safer trek. Rohan feels looked after before he has left.'],
+  ['Day 1 on the trail', 'Pemba pairs all the bands to his tablet in a few minutes. Everything runs on the band and the tablet, so there is no need for signal.', 'The leader gets one screen instead of 20 separate guesses.'],
+  ['Days 2 to 4 walking', 'The screen stays quiet while everyone is steady. It only speaks when someone drifts from their own normal and the rest of the group is not drifting with them.', 'No noise, so Pemba keeps trusting it.'],
+  ['Day 4, 11:40 am', 'Rohan’s band asks him to rest and recheck. His reading holds, so Pemba’s tablet shows a quiet alert. Pemba walks back, agrees Rohan is struggling, and takes him down to a lower camp.', 'Rohan descends at noon in daylight and not at dusk, and the group stays together.'],
+  ['If it is serious', 'Pemba marks it red. The tablet builds the emergency note and the agency office is informed, with a rescue team if needed.', 'Minutes saved when they matter, and a clear record.'],
+  ['After the trek', 'Pemba logs what happened to each alert. The agency keeps its safety record, and Rohan’s raw readings are deleted after 30 days.', 'The agency renews, and our alerts get better for next season.'],
+]
+const states = [
+  ['Green', '#2F8F5B', 'No unusual change. Keep going. It never says “safe”.'],
+  ['Yellow', '#D69E12', 'Early drift. The guide checks in with the trekker.'],
+  ['Orange', '#E8731A', 'Pause and assess. The guide decides: rest, hold or descend.'],
+  ['Red', '#C0392B', 'Emergency. The note goes to the agency and rescuers.'],
+]
 
 export default function Journey() {
-  const [risk, setRisk] = useState(1)
-  const active = riskStates[risk]
-
+  const [s, setS] = useState(3)
+  const [r, setR] = useState(1)
   return (
-    <PageTransition>
-      <section className="relative overflow-hidden bg-[#0e211d] px-6 pb-20 pt-36 text-white md:px-10 md:pb-24">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(240,165,58,.15),transparent_24%),linear-gradient(135deg,#0b1c18,#123c34)]" />
-        <div className="relative mx-auto max-w-[1500px]"><p className="font-mono text-[10px] uppercase tracking-[.25em] text-[#C6A15B]">18 · Journey & governance</p><h1 className="mt-5 max-w-4xl font-display text-6xl leading-[.95] md:text-8xl">From booking<br />to <span className="text-[#C6A15B]">base camp.</span></h1><p className="mt-7 max-w-2xl text-base leading-7 text-white/60 md:text-lg">One trekker. One trek. A sequence of operational moments where context becomes action — without giving the model the final word.</p></div>
-      </section>
+    <>
+      <PageTop title="From booking to base camp, and what happens when the AI is wrong." sub="Rohan’s trek from start to finish, the rules that keep the AI honest, and how we follow Indian data law." />
 
-      <section className="bg-cream px-6 py-24 md:px-10 md:py-32">
-        <div className="mx-auto max-w-[1500px]"><SectionHeading label="19 · The trek" title="Six moments. One continuous safety loop." subhead="Open any moment to see what the system is doing and what evidence travels with it." /><div className="mt-14"><JourneyTimeline /></div></div>
-      </section>
-
-      <section className="bg-[#edf3ef] px-6 py-24 md:px-10 md:py-32">
-        <div className="mx-auto max-w-[1500px]">
-          <SectionHeading label="20 · Risk states" title="Four colours. One human still in charge." subhead="The state changes the operational response — not the authority. Climbit is an early-warning and decision-support layer, not a diagnosis." />
-          <div className="mt-12 grid gap-6 lg:grid-cols-[.7fr_1.3fr]">
-            <div className="grid gap-2">{riskStates.map((state, i) => <button key={state.name} type="button" onClick={() => setRisk(i)} className={`flex items-center justify-between rounded-2xl border px-5 py-4 text-left transition ${i === risk ? 'border-[#0e211d] bg-[#0e211d] text-white' : 'border-stone bg-warm-white text-charcoal hover:-translate-y-0.5'}`}><span><span className="font-mono text-[9px] uppercase tracking-[.18em]" style={{ color: i === risk ? state.color : state.color }}>{state.name}</span><span className={`mt-1 block font-display text-xl ${i === risk ? 'text-white' : 'text-charcoal'}`}>{state.title}</span></span><ChevronRight className={`h-5 w-5 ${i === risk ? 'text-white/50' : 'text-muted'}`} /></button>)}</div>
-            <div className="rounded-[1.75rem] bg-[#0e211d] p-7 text-white md:p-9"><div className="flex items-center justify-between"><div><p className="font-mono text-[9px] uppercase tracking-[.2em]" style={{ color: active.color }}>{active.name}</p><h3 className="mt-2 font-display text-4xl">{active.title}</h3></div><span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/[.07]"><CheckCircle2 className="h-5 w-5" style={{ color: active.color }} /></span></div><p className="mt-7 max-w-2xl text-base leading-7 text-white/65">{active.body}</p><div className="mt-9 grid gap-3 sm:grid-cols-3"><Metric label="Decision" value="Human" /><Metric label="Inference" value="Local" /><Metric label="Protocol" value={active.name === 'RED' ? 'Emergency' : 'Operational'} /></div></div>
+      <Sec>
+        <H sub="Pick a stage. Each one shows what Climbit does and what the agency and trekker get.">The journey: Rohan’s trek with Pemba’s agency</H>
+        <div className="grid gap-6 lg:grid-cols-[320px_1fr]">
+          <div className="grid gap-2" role="tablist">
+            {stages.map(([t], i) => <button key={t} role="tab" aria-selected={i === s} onClick={() => setS(i)} className={`rounded-lg border px-4 py-3 text-left font-medium transition ${i === s ? 'border-ink bg-ink text-white' : 'border-line bg-white text-ink hover:border-ink'}`}>{i + 1}. {t}</button>)}
           </div>
+          <article className="rounded-xl bg-ink p-7 text-white md:p-9">
+            <h3 className="text-3xl">{stages[s][0]}</h3>
+            <p className="mt-4 text-white/85">{stages[s][1]}</p>
+            <p className="mt-6 border-t border-white/15 pt-4"><span className="font-semibold text-flame">What they gain: </span>{stages[s][2]}</p>
+          </article>
         </div>
-      </section>
+      </Sec>
 
-      <section className="bg-cream px-6 py-24 md:px-10 md:py-32">
-        <div className="mx-auto max-w-[1500px]"><SectionHeading label="21 · Governance" title="Governance before scale." subhead="Human-in-the-loop is not a disclaimer. It is a product constraint built into the workflow." /><div className="mt-12"><GovernanceGrid /></div></div>
-      </section>
+      <Sec tone="mist">
+        <H sub="The AI can be wrong in two ways. A false alarm makes guides ignore it. A missed case is worse, because it gives false comfort. We design against both.">When the AI gets it wrong</H>
+        <Table
+          head={['Situation', 'The AI', 'The human']}
+          widths={['30%', '38%', '32%']}
+          rows={[
+            ['Reading is poor (cold finger, loose strap)', 'Asks for a recheck. Never raises an alert on a bad reading.', 'Nothing needed.'],
+            ['AI is unsure', 'Says “cannot tell” and passes it to the guide.', 'Guide checks in person.'],
+            ['Guide dismisses an alert', 'Keeps watching and asks again in 30 minutes with new data.', 'Guide’s reason is logged.'],
+            ['Guide and AI disagree', 'Defers to the guide.', 'Guide’s decision stands.'],
+            ['Red state', 'Prepares the emergency note.', 'Guide confirms before the agency is alerted.'],
+          ]}
+        />
+        <div className="mt-6 grid gap-5 md:grid-cols-3">
+          {[
+            ['No made-up text', 'In the field the AI does not write free text. Alerts use fixed sentences filled with real readings, so it cannot invent a symptom.'],
+            ['Checked every month', 'We compare alerts against what guides found, and publish the misses and false alarms to agencies.'],
+            ['Fair for everyone', 'Wrist sensors can read differently across skin tones, ages and cold hands. We test for this each quarter, and an outside expert audits us once a year.'],
+          ].map(([t, b]) => <article key={t} className="rounded-xl border border-line bg-white p-6"><h3 className="text-lg text-ink">{t}</h3><p className="mt-2 text-[15px]">{b}</p></article>)}
+        </div>
+        <div className="mt-6 rounded-xl bg-white p-5">
+          <p className="mb-3 font-semibold text-ink">Four states, and the guide is in charge of every one</p>
+          <div className="flex flex-wrap gap-2">{states.map(([n, c], i) => <button key={n} onClick={() => setR(i)} className={`flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition ${i === r ? 'border-ink bg-ink text-white' : 'border-line text-ink'}`}><span className="h-3 w-3 rounded-full" style={{ background: c }} />{n}</button>)}</div>
+          <p className="mt-3">{states[r][2]}</p>
+        </div>
+      </Sec>
 
-      <section className="bg-[#E2E9E4] px-6 py-24 md:px-10 md:py-32">
-        <div className="mx-auto max-w-[1500px]"><SectionHeading label="22 · India DPDP Act" title="Privacy is part of the architecture." subhead="The product is designed around minimum necessary data, explicit purpose and controlled sync — especially when the device is offline." /><div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{dpdp.map((col, i) => <article key={col.title} className="card-lift rounded-[1.35rem] border border-stone bg-warm-white p-6"><p className="font-mono text-[9px] text-sunrise">0{i + 1}</p><h3 className="mt-5 font-display text-xl text-charcoal">{col.title}</h3><p className="mt-3 text-sm leading-6 text-graphite">{col.body}</p></article>)}</div></div>
-      </section>
+      <Sec>
+        <H sub="Our first market is India, so the Digital Personal Data Protection Act, 2023 and its Rules, 2025 apply. Consent Manager rules start in mid-November 2026 and the main duties in May 2027. We build to them from day one and pilot only after we meet them.">Following Indian data law</H>
+        <Table
+          head={['What the law asks', 'What Climbit does']}
+          widths={['32%', '68%']}
+          rows={[
+            ['Clear notice and consent for one purpose', 'A short English and Hindi notice at booking, covering safety monitoring only. Consent can be withdrawn in the app. We will use a registered Consent Manager once they are live.'],
+            ['Take only what is needed', 'Heart rate, blood oxygen, sleep baseline, symptom taps, location and height. No contacts, photos or messages.'],
+            ['Medical emergencies', 'The Act allows data use without fresh consent to protect a life. Only a red alert uses this, shares the minimum with rescuers, and is logged.'],
+            ['Children', 'Under-18s need a parent’s verifiable consent and cannot be tracked or monitored, apart from narrow exemptions. Version 1 is for adults only. School groups wait for legal advice.'],
+            ['Security and breaches', 'Data is encrypted on the band, tablet and server. If there is a breach, we tell the Data Protection Board and each affected person, including the 72-hour report to the Board.'],
+            ['Keep it no longer than needed', 'Raw readings are deleted 30 days after the trek unless the trekker opts into research. The agency keeps only its incident note.'],
+            ['Rights and complaints', 'Trekkers can see, correct, erase or withdraw their data, and reach a named grievance officer.'],
+            ['Where data lives', 'India-region servers by our choice. The Act allows most transfers abroad, but we keep data in India.'],
+          ]}
+        />
+        <p className="mt-4 text-sm text-muted">Open items: whether Climbit or the agency is the data fiduciary (we assume Climbit; counsel to confirm), and whether a CDSCO medical-device opinion is needed. We position Climbit as an early-warning wellness tool that never diagnoses.</p>
+      </Sec>
 
-      <section className="bg-[#0e211d] px-6 py-20 text-white md:px-10 md:py-24"><div className="mx-auto max-w-[1000px] text-center"><ShieldCheck className="mx-auto h-8 w-8 text-[#C6A15B]" /><p className="mt-5 font-display text-4xl leading-tight md:text-5xl">The guide owns the decision. Climbit owns the context.</p><p className="mx-auto mt-5 max-w-2xl text-sm leading-6 text-white/50">That separation is what lets the system be fast without pretending to be autonomous medicine.</p></div></section>
-
-      <NextCta to="/appendix" label="Appendix · development & reflection" />
-    </PageTransition>
+      <Next to="/appendix" label="Appendix" line="How this idea developed, what AI helped with, and what I changed my mind about." />
+    </>
   )
-}
-
-function Metric({ label, value }) {
-  return <div className="rounded-xl border border-white/10 bg-white/[.05] p-4"><p className="font-mono text-[8px] uppercase tracking-[.18em] text-white/35">{label}</p><p className="mt-2 font-mono text-sm text-white">{value}</p></div>
 }

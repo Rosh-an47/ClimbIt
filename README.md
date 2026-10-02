@@ -1,36 +1,10 @@
-# Climbit — React assignment website
+# Climbit — DES530 mid-sem submission site
 
-Climbit is a Vite + React presentation site for the high-altitude safety assignment.
+React + Vite + Tailwind. No audio, no WebGL.
 
-## Run locally
+    npm install
+    npm run dev      # local
+    npm run build    # production build in /dist
 
-```bash
-npm install
-npm run dev
-```
-
-If dependencies are already installed but Vite or Tailwind cannot be resolved, reset the install:
-
-```bash
-rmdir /s /q node_modules
-if exist package-lock.json del package-lock.json
-npm install
-npm run dev
-```
-
-## Build
-
-```bash
-npm run build
-npm run preview
-```
-
-## Structure
-
-- `/` — overview + problem story
-- `/how-it-works` — risk engine, contextual scoring, agentic flow and data flywheel
-- `/business` — B2B2C model, persona, competitive landscape and moats
-- `/journey` — interactive trek journey, risk states and governance
-- `/appendix` — project development, AI use and reflection
-
-The site is React/Vite only. There is no Next.js and no Three.js/WebGL dependency in the application code.
+Pages: / (problem) · /solution · /business · /journey (journey + trust + India DPDP) · /appendix
+Edit the two transcript links and the AI-tools list at the top of src/pages/Appendix.jsx.

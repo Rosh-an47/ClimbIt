@@ -1,60 +1,21 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
-
-
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
 @theme {
-  --color-cream: #F1F4F0;
-  --color-warm-white: #F9FAF7;
-  --color-sand: #E2E9E4;
-  --color-stone: #C9D3CD;
-  --color-charcoal: #0E211D;
-  --color-graphite: #40504A;
-  --color-muted: #7A8780;
-  --color-glacier: #DDEAE5;
-  --color-sunrise: #C6A15B;
-  --color-alpenglow: #A97852;
-  --color-deep-pine: #123C34;
-  --color-pine: #1C5A4D;
-  --color-warning: #C6503D;
-  --color-risk-green: #5C9861;
-  --color-risk-yellow: #D1A52F;
-  --color-risk-orange: #D47737;
-  --color-risk-red: #B9433A;
+  --color-ink: #0F2233;
+  --color-slate: #1F3A52;
+  --color-snow: #F6F8F9;
+  --color-mist: #E8EDF0;
+  --color-line: #D3DCE2;
+  --color-body: #34454F;
+  --color-muted: #5E6F7B;
+  --color-flame: #FC522F;
+  --color-flame-ink: #C23A17;
   --font-display: "Fraunces", Georgia, serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-sans: "Inter", system-ui, sans-serif;
 }
-
 html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: #F1F4F0;
-  color: #40504A;
-  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
-  -webkit-font-smoothing: antialiased;
-}
-::selection { background: rgba(198,161,91,.35); color: #0E211D; }
-.font-display { font-family: "Fraunces", Georgia, serif; }
-.font-mono { font-family: "DM Mono", ui-monospace, monospace; }
-
-.card-lift { transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease; }
-.card-lift:hover { transform: translateY(-5px); box-shadow: 0 24px 55px -35px rgba(14,33,29,.45); border-color: rgba(240,165,58,.55); }
-.route-flow { animation: route-dash 3.5s linear infinite; }
-@keyframes route-dash { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
-
-.grid-lines {
-  background-image: linear-gradient(rgba(18,60,52,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(18,60,52,.055) 1px, transparent 1px);
-  background-size: 36px 36px;
-}
-.glow-orb { filter: blur(40px); opacity: .5; }
-.marquee-line { animation: marquee 22s linear infinite; }
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-.float-slow { animation: float-slow 6s ease-in-out infinite; }
-@keyframes float-slow { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .card-lift, .card-lift:hover { transition: none; transform: none; }
-  .route-flow, .marquee-line, .float-slow { animation: none; }
-}
+body { margin: 0; background: #F6F8F9; color: #34454F; font-family: "Inter", system-ui, sans-serif; font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+h1, h2, h3 { font-family: "Fraunces", Georgia, serif; font-weight: 600; letter-spacing: -0.01em; }
+::selection { background: #FC522F; color: #fff; }
+:focus-visible { outline: 3px solid #FC522F; outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
